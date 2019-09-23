@@ -5632,6 +5632,10 @@ static void nv_next(cmdarg_T *cap)
     (void)normal_search(cap, 0, NULL, SEARCH_MARK | cap->arg, NULL);
     cap->count1 -= 1;
   }
+
+  // Redraw the buffer to ensure the highlighting of the current match under
+  // the cursor as well as the old match both get properly updated
+  redraw_later(curwin, NOT_VALID);
 }
 
 /// Search for "pat" in direction "dir" ('/' or '?', 0 for repeat).
